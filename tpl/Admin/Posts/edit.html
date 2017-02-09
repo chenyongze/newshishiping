@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>话题列表 — 时时评后台管理</title>
+    <webuploadercss/>
+    <bootstrapcss />
+    <link rel="stylesheet" href="/tpl/Admin/Public/css/posts.css">
+</head>
+<body>
+
+<!-- 导航栏开始 -->
+<div class="bjy-admin-nav">
+    <i class="fa fa-home"></i> 首页
+    &gt;
+    后台管理
+    &gt;
+    修改视频
+</div>
+
+<!-- 导航栏结束 -->
+<ul id="myTab" class="nav nav-tabs" style="margin-top: 15px;">
+   <li>
+         <a href="{:U('Admin/Posts/index')}">视频列表</a>
+   </li>
+   <li class="active" >
+         <a href="{:U('Admin/Posts/edit',array('post_id'=>I('get.post_id')))}">视频修改</a>
+   </li>
+</ul>
+
+<form action="" method="post" enctype="multipart/form-data" class="form-inline post-submit" enctype="multipart/form-data">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>选择分类</th>
+            <td>
+                <select name="cate_id" class="form-control" style="min-width: 400px;">
+                    <foreach name="cate" item="v">
+                        <option value="{$v['cate_id']}">{$v['name']}</option>
+                    </foreach> 
+                </select>
+            </td>
+            <th width="40%">当前用户</th>
+        </tr>
+        <tr>
+            <th>视频标题</th>
+            <td>
+                <input type="text" class="form-control" style="min-width: 400px;" placeholder="请输入视频标题" name="title" value="{$old_data['title']}">
+            </td>
+            <td>
+                <ul class="sl-insert-ul">
+                    <li class="sl-insert-li" v-for="item in vuelist">
+                        <div class="sl-insert-ship">
+                            <label :for="item.lot_id" style="display: inline;font-weight: 400;">
+                            <div class="col-sm-10">
+                                <img src="{$old_data['avatar']}" width="40" height="40" style="margin: 3px;">
+                                <i class="lqk-ul-name">{$old_data['username']}</i>
+                            </div>
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="radio" checked="checked" name="uid" value="{$old_data['uid']}">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>点赞量</th>
+            <td>
+                <input type="text" class="form-control" name="click_number" placeholder="请输入点赞量" value="{$old_data['click_number']}">
+            </td>
+            <th>选择用户</th>
+        </tr>
+        <tr>
+            <th>选择视频</th>
+            <td>
+                <input type="file" name="video">
+            </td>
+            <td rowspan="2" class="lqk-add-salary">
+                <div class="form-group col-sm-10">
+                    <label class="sr-only" for="name">名称</label>
+                    <input type="text" class="form-control" placeholder="请输入用户名" style="width:100%" v-model="username">
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-default btn-sm" v-on:click="SalaryVue">搜索</button>
+                </div>
+                <div class="sl-out-frame">
+                    <div class="sl-insert-frame">
+                        <ul class="sl-insert-ul">
+                            <li class="sl-insert-li" v-for="item in vuelist">
+                                <div class="sl-insert-ship">
+                                    <label :for="item.lot_id" style="display: inline;font-weight: 400;">
+                                    <div class="col-sm-10">
+                                        <img src="" v-bind:src="item.avatar" width="40" height="40" style="margin: 3px;">
+                                        <i class="lqk-ul-name"  v-text="item.username"></i>
+                                    </div>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="radio" name="uid" :value="item.id">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>视频封面</th>
+            <td >
+                <div class="lqk-imgout-box">
+                    <div class="lqk-cover-box">
+                        <i class="lqk-hide-del" style="color: red;">删除</i>
+                    </div>
+                    <img src="{$old_data['cover_path_bak']}" class="lqk-img-src">
+                    <webuploader name="image" word='' multiple='false' goonuploader='false' checkedbool="false" url="{:U('Admin/Posts/ajax_upload_image')}" />
+                </div>
+            </td>
+
+        </tr> 
+        <tr>
+            <td colspan="2"></td>
+            <td>
+                <input type="hidden" name="post_id" value="{$old_data['post_id']}">
+                <input type="hidden" name="cover_path" value="{$old_data['cover_path']}">
+                <input type="hidden" name="video_path" value="{$old_data['video_path']}">
+                <div class="btn btn-success bnt-sm uploadBtn">修改</div>
+            </td>
+        </tr>
+    </table>   
+</form>
+<bootstrapjs />
+<webuploaderjs/>
+<vue />
+<script type="text/javascript">
+    $(function(){
+        // 删除图片
+        $('.lqk-imgout-box').on('click','.lqk-hide-del',function(){
+            $(this).parents('.lqk-imgout-box').find('.lqk-img-src').remove();
+            $(this).parents('.lqk-imgout-box').find('.lqk-cover-box').remove();
+        })
+    })
+    var get_url = '{:U('Admin/Users/get_users_list')}'+'/p/';
+    var post_url =  '{:U('Admin/Users/search_users_list')}';
+
+    var page=1;
+    var vm=new Vue({
+        el: '.lqk-add-salary',
+        data: {
+            username:'',
+            vuelist:''
+        },
+        ready: function () {
+          this.$http.get(get_url+'1').then(function (response) {
+              this.vuelist=response.data.data;
+          })
+        },
+        methods: {
+            SalaryVue: function(){
+                this.$http.post(post_url,this._data)
+                .then(function(response){
+                    this.vuelist=response.data.data;
+                }) 
+            }
+        }
+    })
+    // 分页处理
+    $('.sl-insert-frame').scroll(function(event) {
+        var documentHeight=$(document).height(),
+                windowHeight=$(window).height(),
+                scrollTop=$(window).scrollTop();
+        if (scrollTop>=documentHeight-windowHeight) {
+            page++;
+            vm.$http.get(get_url+page).then(function (response) {
+                if(response.data.data.length==0){
+                    vm.showHint=true;
+                }else{
+                    response.data.data.forEach(function (k) {
+                        vm.vuelist.push(k);
+                    })
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>

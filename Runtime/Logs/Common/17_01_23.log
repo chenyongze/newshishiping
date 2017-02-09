@@ -1,0 +1,12 @@
+[ 2017-01-23T20:49:31+08:00 ] 127.0.0.1 /index.php/tpl/Public/images/shishiping.jpeg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000164s ]
+ERR: 无法加载模块:Tpl
+
+[ 2017-01-23T20:49:41+08:00 ] 127.0.0.1 /index.php/Public/images/shishiping.jpeg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000161s ]
+ERR: 无法加载模块:Public
+

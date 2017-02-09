@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>评论列表 - 时时评后台管理</title>
+    <bootstrapcss />
+</head>
+<body>
+<!-- 导航栏开始 -->
+<div class="bjy-admin-nav">
+    <i class="fa fa-home"></i> 首页
+    &gt;
+    后台管理
+    &gt;
+    评论列表
+</div>
+<!-- 导航栏结束 -->
+<ul id="myTab" class="nav nav-tabs" style="margin-top: 15px;">
+    <li>
+        <a href="{:U('Admin/Posts/index')}">视频列表</a>
+    </li>
+    <li class="active">
+        <a href="{:U('Admin/Comment/list',array('post_id'=>I('get.post_id')))}">评论列表</a>
+    </li>
+</ul>
+<form action="{:U('Admin/Posts/order_topic')}" method="post">
+    <table class="table table-bordered table-hover table-condensed table-striped">
+        <tr>
+            <th>ID</th>
+            <th>评论内容</th> 
+            <th>点赞量</th>
+            <th>评论时间</th>
+            <th>操作</th> 
+        </tr>
+        <foreach name="list" item="v">
+            <tr>
+                <td>{$v['cid']}</td>
+                <td>{$v['content']}</td>
+                <td>{$v['click_number']}</td>
+                <td>{$v['create_time']}</td>
+                <td>
+                    <a href="{:U('Admin/Comment/edit',array('post_id'=>I('get.post_id'),'cid'=>$v['cid']))}">修改</a>
+                    <a href="{:U('Admin/Comment/del',array('post_id'=>I('get.post_id'),'cid'=>$v['cid']))}">删除</a>
+                </td>
+            </tr>
+        </foreach>
+    </table>
+</form>
+<div class="h-page">{$page}</div>
+<bootstrapjs />
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台登录 - 时时评</title>
+    <bootstrapcss />
+    <css file="__ADMIN_CSS__/login.css" />
+</head>
+<body>
+    <div class="login-box">
+        <form action="{:U('Admin/Login/login')}" method="post">
+            <input type="text" class="form-control modal-sm" name="username" placeholder="请输入用户名">
+            <input type="password" class="form-control modal-sm" name="password" placeholder="请输入密码">
+            <input type="text" class="form-control modal-sm" name="verify_code" placeholder="请输入验证码">
+            <img src="{:U('Admin/Login/verify_code')}" onclick="this.src+='/'+Math.random();">
+            <input type="submit" class="btn btn-default" id="login-post" value="登陆">
+        </form>
+    </div>
+<bootstrapjs />
+</body>
+</html>

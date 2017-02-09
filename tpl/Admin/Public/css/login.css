@@ -1,0 +1,20 @@
+body {
+  background: url(../images/bluebg.png);
+}
+.login-box {
+  width: 300px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+img {
+  cursor: pointer;
+}
+#login-post {
+  float: right;
+  margin-top: 2px;
+  width: 100px;
+}
+input {
+  margin: 10px 0;
+}

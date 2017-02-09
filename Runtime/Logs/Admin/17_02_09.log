@@ -1,0 +1,12 @@
+[ 2017-02-09T17:52:57+08:00 ] 127.0.0.1 /index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_group_access` [ RunTime:0.0319s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM lqk_auth_group_access a INNER JOIN lqk_auth_group g on a.group_id=g.id  WHERE ( a.uid='88' and g.status='1' )  [ RunTime:0.0073s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_rule` [ RunTime:0.0010s ]
+SQL: SELECT `condition`,`name` FROM `lqk_auth_rule` WHERE `id` IN ('6','96','20','1','2','3','4','5','64','21','7','8','9','10','11','12','13','14','15','16','123','124','125','19','104','126','129','130','131','143','144','145','146','148','137','138','139','140','132','133','134','135','136','141','142') AND `type` = 1 AND `status` = 1  [ RunTime:0.0009s ]
+

@@ -1,0 +1,56 @@
+.xb-uploader .queueList .placeholder .filePicker .webuploader-pick {
+  width: 385px;
+  height: 200px;
+  line-height: 200px;
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  color: #666;
+}
+.xb-uploader .queueList .filelist .imgWrap {
+  width: 385px;
+  height: 200px;
+}
+.lqk-imgout-box {
+  width: 385px;
+  height: 200px;
+  margin-bottom: 50px;
+  position: relative;
+}
+.lqk-imgout-box .lqk-img-src {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 385px;
+  height: 200px;
+  z-index: 10;
+}
+.lqk-imgout-box .lqk-cover-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 385px;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: right;
+  cursor: pointer;
+  line-height: 25px;
+  font-size: 16px;
+}
+.sl-out-frame {
+  margin-top: 50px;
+  padding: 0 15px;
+}
+.sl-out-frame .sl-insert-frame {
+  height: 310px;
+  width: 100%;
+  overflow: auto;
+  background: #f5f5f5;
+  border: solid 1px #ccc;
+}
+.sl-out-frame .sl-insert-frame .sl-insert-ul .sl-insert-li .sl-insert-ship {
+  overflow: hidden;
+  line-height: 36px;
+  border-bottom: solid 1px #ccc;
+}
