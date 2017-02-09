@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>视频列表 - 时时评</title>
+    <title>微信公众号 - 时时评</title>
     <link rel="stylesheet" type="text/css" href="/Public/statics/weui-master/dist/style/weui.min.css" />
     <link rel="stylesheet" type="text/css" href="/Public/statics/font-awesome-4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/tpl/Public/css/base.css" />
@@ -14,11 +14,6 @@
     <div class="ss-nav-fixed">
         <div class="ss-nav-outbox">
             <ul class="ss-nav-box">
-                <li class="ss-nav-li">
-                    <a href="<?php echo U('User/Posts/index',array('cate_id'=>'0'));?>" class="ss-nav-a <?php if($_GET['cate_id'] == '0' ): ?>ss-nav-choose"<?php endif; ?>">
-                        首页
-                    </a>
-                </li>
                 <?php if(is_array($cate_list)): foreach($cate_list as $key=>$v): ?><li class="ss-nav-li">
                         <a href="<?php echo U('User/Posts/index',array('cate_id'=>$v['cate_id']));?>" class="ss-nav-a <?php if($v['cate_id'] == $_GET['cate_id']): ?>ss-nav-choose"<?php endif; ?>">
                             <?php echo ($v['name']); ?>

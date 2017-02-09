@@ -10,6 +10,16 @@ class PostsController extends UserBaseController{
         $this->display();
     }
 
+    public function jump_url(){
+        $cate_id = M('Category')
+                    ->field('cate_id')
+                    ->limit(1)
+                    ->find();
+        $cate_id = $cate_id['cate_id'];
+        $url = U('User/Posts/index',array('cate_id'=>$cate_id));
+        redirect($url);
+    }
+
     // 视频列表
     public function index(){
         // 调取分类信息
