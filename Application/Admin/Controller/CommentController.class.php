@@ -9,7 +9,7 @@ class CommentController extends AdminBaseController{
 
 
     // 列表
-    public function list(){
+    public function index(){
         $post_id = I('get.post_id');
         $map = array(
             'post_id' => $post_id

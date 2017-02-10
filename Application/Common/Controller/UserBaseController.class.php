@@ -10,7 +10,6 @@ class UserBaseController extends BaseController{
 	 */
 	public function _initialize(){
        	parent::_initialize();
-
         // 分享SDK
         $jssdk = new \Org\Xb\Wxjssdk("wx876aeff91e86d828","27da9a3a367718b6c236db6bc1c20207");
         $signPackage = $jssdk->GetSignPackage();

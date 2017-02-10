@@ -10,9 +10,13 @@
     <link rel="stylesheet" type="text/css" href="/tpl/User/Public/css/posts.css" />
 </head>
 <body class="ss-list-data">
+<button id="test1">小小提示层</button>
+
     <div class="ss-click-out">
-        <video webkit-playsinline width="1" height="1" class="ss-video" x-webkit-airplay controls loop="loop" poster="<?php echo ($data['cover_path']); ?>" src="<?php echo ($data['video_path']); ?>"></video>
-        <a href="<?php echo U('User/Posts/index',array('cate_id'=>I('get.cate_id')));?>" class="fa fa-angle-left ss-video-icon"></a>
+        <div class="ss-video-box">
+            <video webkit-playsinline width="1" height="1" class="ss-video" x-webkit-airplay controls loop="loop" poster="<?php echo ($data['cover_path']); ?>" src="<?php echo ($data['video_path']); ?>"></video>
+            <a href="<?php echo U('User/Posts/index',array('cate_id'=>I('get.cate_id')));?>" class="fa fa-angle-left ss-video-icon"></a>
+        </div>
         <div class="ss-video-text">
             <p class="ss-video-font"><?php echo ($data['title']); ?></p>
             <div class="ss-video-count">
@@ -80,14 +84,18 @@
 <input type="hidden" id="ss-login" value="<?php echo $_SESSION['user']['id'];?>">
 <input type="hidden" id="ss-url" value="<?php echo U('Api/Wx/back_url',array('cate_id'=>I('get.cate_id'),'post_id'=>I('get.post_id')));?>">
 
-    <script type="text/javascript" src="/Public/statics/js/zepto-1.1.6.min.js"></script>
+    <script type="text/javascript" src="/Public/statics/js/jquery-1.10.2.min.js"></script>
     <script src="/Public/statics/vue/vue.js"></script>    
 <script src="/Public/statics/vue/vue-resource.min.js"></script> 
 <script>
     Vue.http.options.emulateJSON = true;
 </script>    
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="/Public/statics/layer/layer.js"></script>
     <script type="text/javascript">
+        $('#test1').on('click', function(){
+  layer.msg('Hello layer');
+});
         // 分享图片
         var share_image_url = '<?php echo ($data['cover_path']); ?>'; 
         // 分享标题
@@ -160,6 +168,7 @@
                     vm.list = response.data.comment_data;
                 }else{
                     alert(response.error_message);
+
                 }
             }
         });
@@ -194,48 +203,48 @@
         })
 
         // 微信分享
-        // wx.config({
-        //     appId: '<?php echo ($signPackage["appId"]); ?>',
-        //     timestamp: <?php echo ($signPackage["timestamp"]); ?>,
-        //     nonceStr: '<?php echo ($signPackage["nonceStr"]); ?>',
-        //     signature: '<?php echo ($signPackage["signature"]); ?>',
-        //     jsApiList: [
-        //         'checkJsApi',
-        //         'onMenuShareTimeline',
-        //         'onMenuShareAppMessage',
-        //         'onMenuShareQQ',
-        //         'onMenuShareWeibo'
-        //       ]
-        // });             
-        // wx.ready(function () {
-        //     // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
-        //     wx.checkJsApi({
-        //       jsApiList: [
-        //         'getNetworkType',
-        //         'previewImage',
-        //          'onMenuShareTimeline',
-        //         'onMenuShareAppMessage',
-        //         'onMenuShareQQ',
-        //         'onMenuShareWeibo'
-        //       ],            
-        //     });
-        //     var shareData = {
-        //       title: share_title,
-        //       desc: share_content,
-        //       link: '',
-        //       imgUrl: share_image_url, 
-        //     };
-        //     var friendline = {
-        //       title: share_title,
-        //       desc: '',
-        //       link: '',
-        //       imgUrl: share_image_url, 
-        //     };
-        //     wx.onMenuShareAppMessage(shareData);
-        //     wx.onMenuShareTimeline(friendline);
-        //     wx.onMenuShareQQ(shareData);
-        //     wx.onMenuShareWeibo(shareData);
-        // });
+        wx.config({
+            appId: '<?php echo ($signPackage["appId"]); ?>',
+            timestamp: <?php echo ($signPackage["timestamp"]); ?>,
+            nonceStr: '<?php echo ($signPackage["nonceStr"]); ?>',
+            signature: '<?php echo ($signPackage["signature"]); ?>',
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+              ]
+        });             
+        wx.ready(function () {
+            // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+            wx.checkJsApi({
+              jsApiList: [
+                'getNetworkType',
+                'previewImage',
+                 'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+              ],            
+            });
+            var shareData = {
+              title: share_title,
+              desc: share_content,
+              link: '',
+              imgUrl: share_image_url, 
+            };
+            var friendline = {
+              title: share_title,
+              desc: '',
+              link: '',
+              imgUrl: share_image_url, 
+            };
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(friendline);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
 
         // 分页处理
         $(window).scroll(function(event) {

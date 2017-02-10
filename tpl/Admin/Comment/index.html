@@ -20,7 +20,7 @@
         <a href="{:U('Admin/Posts/index')}">视频列表</a>
     </li>
     <li class="active">
-        <a href="{:U('Admin/Comment/list',array('post_id'=>I('get.post_id')))}">评论列表</a>
+        <a href="{:U('Admin/Comment/index',array('post_id'=>I('get.post_id')))}">评论列表</a>
     </li>
 </ul>
 <form action="{:U('Admin/Posts/order_topic')}" method="post">

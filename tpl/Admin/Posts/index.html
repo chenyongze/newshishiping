@@ -57,7 +57,7 @@
                 <td>{$v['create_time']}</td>
                 <td>
                     <a href="{:U('Admin/Comment/add',array('post_id'=>$v['post_id']))}">添加评论</a>
-                    <a href="{:U('Admin/Comment/list',array('post_id'=>$v['post_id']))}">查看评论</a>
+                    <a href="{:U('Admin/Comment/index',array('post_id'=>$v['post_id']))}">查看评论</a>
                     <a href="{:U('Admin/Posts/edit',array('post_id'=>$v['post_id']))}">修改</a>
                     <a href="{:U('Admin/Posts/del',array('post_id'=>$v['post_id']))}">删除</a>
                 </td>
