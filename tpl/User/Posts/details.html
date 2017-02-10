@@ -12,7 +12,7 @@
 <body class="ss-list-data">
     <div class="ss-click-out">
         <div class="ss-video-box">
-            <video webkit-playsinline width="1" height="1" class="ss-video" x-webkit-airplay controls loop="loop" poster="{$data['cover_path']}" src="{$data['video_path']}"></video>
+            <video class="ss-video" controls="controls" loop="loop" poster="{$data['cover_path']}" src="{$data['video_path']}"></video>
             <a href="{:U('User/Posts/index',array('cate_id'=>I('get.cate_id')))}" class="fa fa-angle-left ss-video-icon"></a>
         </div>
         <div class="ss-video-text">
@@ -58,9 +58,9 @@
     <!-- 模态框 -->
     <div id="dialog1" style="display: none;">
         <div class="weui-mask"></div>
-        <div class="weui-dialog">
+        <div class="weui-dialog" style="z-index: 1000000;">
             <div class="weui-dialog__bd" style="padding: 8px 0px;">
-                <textarea name="" cols="30" rows="7" class="ss-comment-box"></textarea>
+                <textarea name="" class="ss-comment-box"></textarea>
             </div>
             <div class="weui-dialog__ft" style="line-height: 30px;height: 30px;">
                 <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
@@ -79,7 +79,7 @@
     </div>
 <!-- 隐藏域 -->
 <input type="hidden" v-model="post_id" value="{:I('get.post_id')}" id="post_id">
-<input type="hidden" id="ss-login" value="{:$_SESSION['user']['id']}">
+<input type="hidden" id="ss-login" value="97">
 <input type="hidden" id="ss-url" value="{:U('Api/Wx/back_url',array('cate_id'=>I('get.cate_id'),'post_id'=>I('get.post_id')))}">
 
     <js file="__PUBLIC__/statics/js/jquery-1.10.2.min.js" />

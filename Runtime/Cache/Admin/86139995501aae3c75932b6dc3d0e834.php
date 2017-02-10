@@ -33,7 +33,6 @@
          <a href="<?php echo U('Admin/Posts/add');?>">视频添加</a>
    </li>
 </ul>
-
 <form method="post" enctype="multipart/form-data" class="form-inline post-submit">
     <table class="table table-bordered table-condensed">
         <tr>
@@ -88,14 +87,19 @@
         <tr>
             <th>选择视频</th>
             <td>
-                <input type="file" name="video">
+                <!-- <input type="file" name="video"> -->
+                <div id="uploader-demo">
+                    <!--用来存放item-->
+                    <div id="fileList" class="uploader-list"></div>
+                    <div id="filePicker1">选择视频</div>
+                </div>
             </td>
         </tr>
         <tr>
             <th>视频封面</th>
             <td >
                 <div class="lqk-imgout-box">
-                    <div id="upload-588639b78c90d" class="xb-uploader">
+                    <div id="upload-589dbbec2a965" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -122,7 +126,7 @@ jQuery(function() {
 
         $goonuploader=false,
 
-        $wrap = $("#upload-588639b78c90d"),
+        $wrap = $("#upload-589dbbec2a965"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -184,11 +188,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-588639b78c90d .filePicker",
+            id: "#upload-589dbbec2a965 .filePicker",
             label: '点击选择图片',
             multiple : false
         },
-        dnd: "#upload-588639b78c90d .queueList",
+        dnd: "#upload-589dbbec2a965 .queueList",
         paste: document.body,
         accept: {
              title: 'Images',
@@ -211,12 +215,12 @@ jQuery(function() {
     // 添加“添加文件”的按钮，
     if(false==true){
         uploader.addButton({
-           id: "#upload-588639b78c90d .filePicker2",
+           id: "#upload-589dbbec2a965 .filePicker2",
            label: '继续添加'
         });
     }else{
         uploader.addButton({
-           id: "#upload-588639b78c90d .filePicker2",
+           id: "#upload-589dbbec2a965 .filePicker2",
         });
     }
 
@@ -410,7 +414,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-588639b78c90d .webuploader-element-invisible').remove();
+                $('#upload-589dbbec2a965 .webuploader-element-invisible').remove();
             }
         }
 
@@ -452,7 +456,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-588639b78c90d .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-589dbbec2a965 .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -460,7 +464,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-588639b78c90d .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-589dbbec2a965 .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;
@@ -595,8 +599,14 @@ jQuery(function() {
                 <div class="btn btn-success btn-sm uploadBtn">添加</div>
             </td>
         </tr>
-    </table>   
+    </table>
+    <input type="hidden" id="video_path" value="" name="video_path">
 </form>
+
+<input id="api" type="hidden" value="<?php echo ($api); ?>">
+<input id="sign" type="hidden" value="<?php echo ($sign); ?>">
+<input id="policy" type="hidden" value="<?php echo ($policy); ?>">
+<input id="bucket" type="hidden" value="<?php echo ($bucket); ?>">
 <!-- 引入bootstrjs部分开始 -->
 <script src="/Public/statics/js/jquery-1.10.2.min.js"></script>
 <script src="/Public/statics/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -634,6 +644,7 @@ jQuery(function() {
             }
         }
     })
+
     // 分页处理
     $('.sl-insert-frame').scroll(function(event) {
         var documentHeight=$(document).height(),
@@ -652,6 +663,95 @@ jQuery(function() {
             })
         }
     });
+// 图片上传demo
+jQuery(function() {
+    var $ = jQuery,
+        $list = $('#fileList'),
+        $btn = $('#ctlBtn'),
+        $policy = $('#policy').val(),
+        $sign = $('#sign').val(),
+        $api = $('#api').val(),
+        $bucket = $('#bucket').val(),
+        state = 'pending',      
+        // Web Uploader实例
+        uploader;
+        uploader = WebUploader.create({
+
+        // swf文件路径
+        swf: '/webuploader/Uploader.swf',
+
+        // 文件接收服务端。
+        server: $api,
+        auto:true,
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker1',
+        formData: {
+            policy: $policy,
+            signature: $sign
+        }
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        $list.append( '<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">等待上传...</p>' +
+            '</div>' );
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress .progress-bar');
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<div class="progress progress-striped active">' +
+              '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+              '</div>' +
+            '</div>').appendTo( $li ).find('.progress-bar');
+        }
+        $li.find('p.state').text('上传中');
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+    uploader.on( 'uploadSuccess', function( file,response ) {
+        $( '#'+file.id ).find('p.state').text('已上传');
+        var url='http://'+$bucket+'.'+'b0.upaiyun.com'+response.url;
+        $('#video_path').val(url);
+    });
+
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错');
+    });
+
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').fadeOut();
+    });
+
+    uploader.on( 'all', function( type ) {
+        if ( type === 'startUpload' ) {
+            state = 'uploading';
+        } else if ( type === 'stopUpload' ) {
+            state = 'paused';
+        } else if ( type === 'uploadFinished' ) {
+            state = 'done';
+        }
+
+        if ( state === 'uploading' ) {
+            $btn.text('暂停上传');
+        } else {
+            $btn.text('开始上传');
+        }
+    });
+
+    $btn.on( 'click', function() {
+        if ( state === 'uploading' ) {
+            uploader.stop();
+        } else {
+            uploader.upload();
+        }
+    });
+});
 </script>
 </body>
 </html>

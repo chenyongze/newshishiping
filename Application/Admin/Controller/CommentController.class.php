@@ -95,7 +95,7 @@ class CommentController extends AdminBaseController{
             );
         $result = M('Comment')->where($map)->delete();
         if($result){
-            $this->success('删除成功',U('Admin/Comment/list',array('post_id'=>$post_id)));
+            $this->success('删除成功',U('Admin/Comment/index',array('post_id'=>$post_id)));
         }else{
             $this->error('删除失败');
         }

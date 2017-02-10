@@ -10,11 +10,9 @@
     <link rel="stylesheet" type="text/css" href="/tpl/User/Public/css/posts.css" />
 </head>
 <body class="ss-list-data">
-<button id="test1">小小提示层</button>
-
     <div class="ss-click-out">
         <div class="ss-video-box">
-            <video webkit-playsinline width="1" height="1" class="ss-video" x-webkit-airplay controls loop="loop" poster="<?php echo ($data['cover_path']); ?>" src="<?php echo ($data['video_path']); ?>"></video>
+            <video class="ss-video" controls="controls" loop="loop" poster="<?php echo ($data['cover_path']); ?>" src="<?php echo ($data['video_path']); ?>"></video>
             <a href="<?php echo U('User/Posts/index',array('cate_id'=>I('get.cate_id')));?>" class="fa fa-angle-left ss-video-icon"></a>
         </div>
         <div class="ss-video-text">
@@ -60,9 +58,9 @@
     <!-- 模态框 -->
     <div id="dialog1" style="display: none;">
         <div class="weui-mask"></div>
-        <div class="weui-dialog">
+        <div class="weui-dialog" style="z-index: 1000000;">
             <div class="weui-dialog__bd" style="padding: 8px 0px;">
-                <textarea name="" cols="30" rows="7" class="ss-comment-box"></textarea>
+                <textarea name="" class="ss-comment-box"></textarea>
             </div>
             <div class="weui-dialog__ft" style="line-height: 30px;height: 30px;">
                 <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
@@ -81,7 +79,7 @@
     </div>
 <!-- 隐藏域 -->
 <input type="hidden" v-model="post_id" value="<?php echo I('get.post_id');?>" id="post_id">
-<input type="hidden" id="ss-login" value="<?php echo $_SESSION['user']['id'];?>">
+<input type="hidden" id="ss-login" value="97">
 <input type="hidden" id="ss-url" value="<?php echo U('Api/Wx/back_url',array('cate_id'=>I('get.cate_id'),'post_id'=>I('get.post_id')));?>">
 
     <script type="text/javascript" src="/Public/statics/js/jquery-1.10.2.min.js"></script>
@@ -93,9 +91,6 @@
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="/Public/statics/layer/layer.js"></script>
     <script type="text/javascript">
-        $('#test1').on('click', function(){
-  layer.msg('Hello layer');
-});
         // 分享图片
         var share_image_url = '<?php echo ($data['cover_path']); ?>'; 
         // 分享标题
@@ -167,8 +162,7 @@
                     $('.ss-comment-count').text(response.data.comment_count);
                     vm.list = response.data.comment_data;
                 }else{
-                    alert(response.error_message);
-
+                    layer.msg(response.error_message);
                 }
             }
         });
@@ -194,7 +188,7 @@
             }
             function callback(response){
                 if(response.error_code != 1){
-                    alert(response.error_message);
+                    layer.msg(response.error_message);
                 }else{
                     num = num*1 + 1;
                     obj.find('.ss-point-count').text(num);

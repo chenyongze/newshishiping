@@ -116,7 +116,6 @@ class PostsModel extends BaseModel{
                 ->find();
         $data['cover_path'] = C('YPY_DOMAIN').$data['cover_path'].'!375x200';
         $data['comment_count'] = M('Comment')->where($map)->count();
-        $data['video_path'] = C('YPY_DOMAIN').$data['video_path'];
         return $data;
     }
 
