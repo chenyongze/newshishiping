@@ -99,7 +99,7 @@
             <th>视频封面</th>
             <td >
                 <div class="lqk-imgout-box">
-                    <div id="upload-589dbbec2a965" class="xb-uploader">
+                    <div id="upload-589f1d913dce2" class="xb-uploader">
     <div class="queueList">
         <div class="placeholder">
             <div class="filePicker"></div>
@@ -126,7 +126,7 @@ jQuery(function() {
 
         $goonuploader=false,
 
-        $wrap = $("#upload-589dbbec2a965"),
+        $wrap = $("#upload-589f1d913dce2"),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>')
@@ -188,11 +188,11 @@ jQuery(function() {
     // 实例化
     uploader = WebUploader.create({
         pick: {
-            id: "#upload-589dbbec2a965 .filePicker",
+            id: "#upload-589f1d913dce2 .filePicker",
             label: '点击选择图片',
             multiple : false
         },
-        dnd: "#upload-589dbbec2a965 .queueList",
+        dnd: "#upload-589f1d913dce2 .queueList",
         paste: document.body,
         accept: {
              title: 'Images',
@@ -215,12 +215,12 @@ jQuery(function() {
     // 添加“添加文件”的按钮，
     if(false==true){
         uploader.addButton({
-           id: "#upload-589dbbec2a965 .filePicker2",
+           id: "#upload-589f1d913dce2 .filePicker2",
            label: '继续添加'
         });
     }else{
         uploader.addButton({
-           id: "#upload-589dbbec2a965 .filePicker2",
+           id: "#upload-589f1d913dce2 .filePicker2",
         });
     }
 
@@ -414,7 +414,7 @@ jQuery(function() {
                 text += '，失败' + stats.uploadFailNum + '个';
             }
             if (fileCount==stats.successNum && stats.successNum!=0) {
-                $('#upload-589dbbec2a965 .webuploader-element-invisible').remove();
+                $('#upload-589f1d913dce2 .webuploader-element-invisible').remove();
             }
         }
 
@@ -456,7 +456,7 @@ jQuery(function() {
 
             case 'ready':
                 $placeHolder.addClass( 'element-invisible' );
-                $( "#upload-589dbbec2a965 .filePicker2" ).removeClass( 'element-invisible');
+                $( "#upload-589f1d913dce2 .filePicker2" ).removeClass( 'element-invisible');
                 $queue.parent().addClass('filled');
                 $queue.show();
                 $statusBar.removeClass('element-invisible');
@@ -464,7 +464,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $( "#upload-589dbbec2a965 .filePicker2" ).addClass( 'element-invisible' );
+                $( "#upload-589f1d913dce2 .filePicker2" ).addClass( 'element-invisible' );
                 $progress.show();
                 $upload.text( '暂停上传' );
                 break;

@@ -5179,3 +5179,86 @@ SQL: SELECT COUNT(*) AS tp_count FROM `lqk_users` LIMIT 1   [ RunTime:0.0005s ]
 NOTIC: [8] Only variables should be passed by reference /Library/WebServer/Documents/newshishiping/ThinkPHP/Library/Think/Db/Driver.class.php 第 769 行.
 SQL: SELECT `username`,`avatar`,`register_time`,`id` FROM `lqk_users` WHERE `status` = 3 ORDER BY `id` desc LIMIT 0,15   [ RunTime:0.0003s ]
 
+[ 2017-02-10T21:16:12+08:00 ] 127.0.0.1 /index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_group_access` [ RunTime:0.0005s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM lqk_auth_group_access a INNER JOIN lqk_auth_group g on a.group_id=g.id  WHERE ( a.uid='88' and g.status='1' )  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_rule` [ RunTime:0.0004s ]
+SQL: SELECT `condition`,`name` FROM `lqk_auth_rule` WHERE `id` IN ('6','96','20','1','2','3','4','5','64','21','7','8','9','10','11','12','13','14','15','16','123','124','125','19','104','126','129','130','131','143','144','145','146','148','137','138','139','140','132','133','134','135','136','141','142') AND `type` = 1 AND `status` = 1  [ RunTime:0.0003s ]
+NOTIC: [2] Declaration of Common\Model\AdminNavModel::getTreeData($type = 'tree', $order = '') should be compatible with Common\Model\BaseModel::getTreeData($type = 'tree', $order = '', $name = 'name', $child = 'id', $parent = 'pid') /Library/WebServer/Documents/newshishiping/Application/Common/Model/AdminNavModel.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `lqk_admin_nav` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `lqk_admin_nav` ORDER BY order_number is null,`order_number`,`id`  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000126s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000149s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025340s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025372s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000353s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000585s ]
+
+[ 2017-02-10T21:16:12+08:00 ] 127.0.0.1 /index.php/Admin/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000242s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_group_access` [ RunTime:0.0005s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM lqk_auth_group_access a INNER JOIN lqk_auth_group g on a.group_id=g.id  WHERE ( a.uid='88' and g.status='1' )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_rule` [ RunTime:0.0005s ]
+SQL: SELECT `condition`,`name` FROM `lqk_auth_rule` WHERE `id` IN ('6','96','20','1','2','3','4','5','64','21','7','8','9','10','11','12','13','14','15','16','123','124','125','19','104','126','129','130','131','143','144','145','146','148','137','138','139','140','132','133','134','135','136','141','142') AND `type` = 1 AND `status` = 1  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000021s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000046s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008763s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008851s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000322s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000655s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000704s ]
+
+[ 2017-02-10T21:18:25+08:00 ] 127.0.0.1 /index.php/Admin/Posts/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000561s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_group_access` [ RunTime:0.0005s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM lqk_auth_group_access a INNER JOIN lqk_auth_group g on a.group_id=g.id  WHERE ( a.uid='88' and g.status='1' )  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lqk_auth_rule` [ RunTime:0.0004s ]
+SQL: SELECT `condition`,`name` FROM `lqk_auth_rule` WHERE `id` IN ('6','96','20','1','2','3','4','5','64','21','7','8','9','10','11','12','13','14','15','16','123','124','125','19','104','126','129','130','131','143','144','145','146','148','137','138','139','140','132','133','134','135','136','141','142') AND `type` = 1 AND `status` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lqk_posts` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lqk_posts` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Only variables should be passed by reference /Library/WebServer/Documents/newshishiping/ThinkPHP/Library/Think/Db/Driver.class.php 第 769 行.
+SQL: SELECT p.post_id,p.title,p.cover_path,p.create_time,p.uid,p.cate_id,p.click_number,p.see_number,u.username,u.avatar FROM lqk_posts p INNER JOIN lqk_users as u on p.uid = u.id  ORDER BY p.post_id desc LIMIT 0,15   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lqk_comment` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lqk_comment` WHERE `post_id` = 13 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `lqk_point` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lqk_point` WHERE `post_id` = 13 AND `status` = 0 LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000064s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007364s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007402s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000377s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000484s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000510s ]
+
